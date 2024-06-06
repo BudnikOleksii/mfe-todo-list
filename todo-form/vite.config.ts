@@ -1,7 +1,33 @@
+import path from 'path';
 import { defineConfig } from 'vite';
+import federation from '@originjs/vite-plugin-federation';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+import { dependencies } from './package.json';
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    federation({
+      name: 'todo-form',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './TodoForm': './src/App.tsx',
+      },
+      shared: {
+        ...dependencies,
+      },
+    }),
+  ],
+  build: {
+    modulePreload: false,
+    target: 'esnext',
+    minify: false,
+    cssCodeSplit: false,
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 });
