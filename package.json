@@ -4,12 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-auth": "cd auth && pnpm build",
+    "build-todo-form": "cd todo-form && pnpm build",
+    "build-todo-list": "cd todo-list && pnpm build",
+    "serve-auth": "cd auth && pnpm preview",
+    "serve-todo-form": "cd todo-form && pnpm preview",
+    "serve-todo-list": "cd todo-list && pnpm preview",
+    "build-mfe": "concurrently 'pnpm:build-auth' 'pnpm:build-todo-form' 'pnpm:build-todo-list'",
+    "serve-mfe": "concurrently 'pnpm:serve-auth' 'pnpm:serve-todo-form' 'pnpm:serve-todo-list'",
+    "build-n-serve-mfe": "pnpm build-mfe && pnpm serve-mfe"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "eslint": "^9.3.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",

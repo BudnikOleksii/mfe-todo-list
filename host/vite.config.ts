@@ -3,8 +3,6 @@ import { defineConfig } from 'vite';
 import federation from '@originjs/vite-plugin-federation';
 import react from '@vitejs/plugin-react';
 
-import { dependencies } from './package.json';
-
 export default defineConfig({
   plugins: [
     react(),
@@ -15,9 +13,8 @@ export default defineConfig({
         todoForm: 'http://localhost:3002/assets/remoteEntry.js',
         todoList: 'http://localhost:3003/assets/remoteEntry.js',
       },
-      shared: {
-        ...dependencies,
-      },
+      // TODO figure out why it can't reslove @radix-ui
+      shared: ['react'],
     }),
   ],
   build: {

@@ -8,8 +8,8 @@ import TodoForm from 'todoForm/TodoForm';
 // @ts-expect-error With module federation we use bundled js files
 import TodoList from 'todoList/TodoList';
 
+import { ROUTES } from './constants';
 import { ErrorPage } from './pages/Error.tsx';
-import { Home } from './pages/Home.tsx';
 import Root from './Root.tsx';
 
 const router = createBrowserRouter([
@@ -19,19 +19,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/home',
-        element: <Home />,
-      },
-      {
-        path: '/login',
+        path: ROUTES.auth,
         element: <Auth />,
       },
       {
-        path: '/todos',
+        path: ROUTES.todos,
         element: <TodoList />,
       },
       {
-        path: '/todos/create',
+        path: ROUTES.createTodo,
         element: <TodoForm />,
       },
     ],

@@ -25,7 +25,9 @@
     "jest": true
   },
   "ignorePatterns": [
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "tailwind.config.js",
+    "postcss.config.js"
   ],
   "rules": {
     "prettier/prettier": [
